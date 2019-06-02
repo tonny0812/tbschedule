@@ -17,7 +17,8 @@ public class ConsoleManager {
     protected static transient Logger log = LoggerFactory.getLogger(ConsoleManager.class);
 
     public final static String configFile =
-        System.getProperty("user.dir") + File.separator + "pamirsScheduleConfig.properties";
+//        System.getProperty("user.dir") + File.separator + "pamirsScheduleConfig.properties";
+        "/data/tbschedule" + File.separator + "pamirsScheduleConfig.properties";
 
     private static TBScheduleManagerFactory scheduleManagerFactory;
 
