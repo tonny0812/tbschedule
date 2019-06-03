@@ -5,7 +5,9 @@ import lombok.extern.log4j.Log4j2;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.api.BackgroundCallback;
 import org.apache.curator.framework.api.CuratorEvent;
+import org.apache.curator.framework.imps.CuratorFrameworkState;
 import org.apache.zookeeper.ZooDefs;
+import org.apache.zookeeper.ZooKeeper;
 import org.apache.zookeeper.data.ACL;
 import org.apache.zookeeper.data.Id;
 import org.apache.zookeeper.server.auth.DigestAuthenticationProvider;
@@ -59,4 +61,15 @@ public class ZKManager {
         zkClient.init();
     }
 
+    public void close() throws InterruptedException {
+        log.info("关闭zookeeper连接");
+        if (zkClient == null) {
+            return;
+        }
+        this.zkClient.stop();
+    }
+
+    public boolean checkZookeeperState() {
+        return zkClient != null && zkClient.getState() == CuratorFrameworkState.STARTED;
+    }
 }

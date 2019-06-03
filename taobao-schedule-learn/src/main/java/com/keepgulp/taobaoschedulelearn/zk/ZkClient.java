@@ -3,13 +3,10 @@ package com.keepgulp.taobaoschedulelearn.zk;
 import com.keepgulp.taobaoschedulelearn.config.ZKConfigurationProperites;
 import lombok.Data;
 import lombok.extern.log4j.Log4j2;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.framework.api.BackgroundCallback;
-import org.apache.curator.framework.api.CuratorEvent;
-import org.apache.curator.framework.api.ExistsBuilder;
 import org.apache.curator.framework.imps.CuratorFrameworkState;
 import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.apache.zookeeper.CreateMode;
@@ -17,6 +14,7 @@ import org.apache.zookeeper.data.ACL;
 import org.apache.zookeeper.data.Stat;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.Writer;
 import java.net.InetAddress;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -147,5 +145,11 @@ public class ZkClient {
         return client.setData().forPath(path,  null == value ? null : value.getBytes());
     }
 
+    public void printTree(String path, Writer writer, String lineSplitChar) throws Exception {
+        //TODO
+    }
 
+    public CuratorFrameworkState getState() {
+        return client.getState();
+    }
 }

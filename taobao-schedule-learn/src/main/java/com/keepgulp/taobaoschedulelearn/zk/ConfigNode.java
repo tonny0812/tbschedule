@@ -1,6 +1,8 @@
 package com.keepgulp.taobaoschedulelearn.zk;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import java.io.Serializable;
 
@@ -8,6 +10,7 @@ import java.io.Serializable;
  * 配置信息
  */
 @Data
+@NoArgsConstructor
 public class ConfigNode implements Serializable {
 
     private String rootPath;
@@ -17,6 +20,12 @@ public class ConfigNode implements Serializable {
     private String name;
 
     private String value;
+
+    public ConfigNode(String rootPath, String configType, String name) {
+        this.rootPath = rootPath;
+        this.configType = configType;
+        this.name = name;
+    }
 
     @Override
     public String toString() {
